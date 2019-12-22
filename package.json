@@ -1,0 +1,86 @@
+{
+  "name": "fastify-http-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --config ./webpack/webpack.dev.conf.js",
+    "build": "webpack --config ./webpack/webpack.build.conf.js",
+    "server": "nodemon ./server/app.ts"
+  },
+  "nodemonConfig": {
+    "delay": "5000"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 3 version"
+  ],
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      [
+        "module:fast-async",
+        {
+          "spec": true
+        }
+      ]
+    ]
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blackPavlin/fastify-http-server.git"
+  },
+  "author": {
+    "name": "Boikiv Bogdan",
+    "email": "boikiv.bogdan@gmail.com"
+  },
+  "license": "UNLICENSE",
+  "dependencies": {
+    "@babel/polyfill": "^7.7.0",
+    "axios": "^0.19.0",
+    "bcryptjs": "^2.4.3",
+    "fastify": "^2.11.0",
+    "fastify-formbody": "^3.1.0",
+    "fastify-static": "^2.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.2",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^8.3.5",
+    "@types/mongoose": "^5.5.34",
+    "@types/node": "^12.12.21",
+    "autoprefixer": "^9.7.3",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.4.0",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^4.1.10",
+    "fast-async": "^6.3.8",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.0",
+    "nodemon": "^2.0.2",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.1.1",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.4",
+    "vue-loader": "^15.8.3",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1",
+    "webpack-merge": "^4.2.2"
+  }
+}
