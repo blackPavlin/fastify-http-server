@@ -23,8 +23,14 @@ module.exports = {
     module: {
         rules: [{
             test: /\.js$/,
-            loader: "babel-loader",
-            exclude: "/(node_modules|bower_components)/",
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: "babel-loader",
+                options: {
+                    presets: ["@babel/preset-env"],
+                    plugins: ["@babel/plugin-transform-runtime"],
+                },
+            }
         }, {
             test: /\.css$/,
             use: [
@@ -80,7 +86,6 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: "assets/css/[name].[hash].css",
-            // chunkFilename: "[id].css",
         }),
         new CopyWebpackPlugin([
             { from: `${PATHS.src}/assets/images`, to: `${PATHS.build}/assets/images` },
@@ -108,7 +113,7 @@ module.exports = {
                     test: /node_modules/,
                     chunks: "all",
                     enforce: true,
-                }
+                },
             },
         },
     },
