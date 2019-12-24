@@ -93,15 +93,15 @@ module.exports = {
             { from: `${PATHS.src}/static`, to: ""},
         ]),
         new HtmlWebpackPlugin({
-            hash: false,
-            template: `${PATHS.src}/pages/main/index.html`,
-            filename: `./index.html`,
+            filename: "index.html",
+            template: `${PATHS.src}/index.html`,
+            // favicon: path.resolve(__dirname, "favicon.ico"),
         }),
         new VueLoaderPlugin()
     ],
     resolve: {
         alias: {
-            "~": "src",
+            "~": "client",
             "vue$": "vue/dist/vue.js",
         }
     },
