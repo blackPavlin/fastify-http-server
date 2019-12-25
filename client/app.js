@@ -4,7 +4,7 @@ import Vuelidate from "vuelidate"
 import UiMini from "uimini/dist/css/uimini.min.css"
 
 import router from "./router"
-// import store from "./store"
+import store from "./store"
 
 Vue.use(
   Vuelidate,
@@ -13,6 +13,6 @@ Vue.use(
 
 new Vue({
   router,
-//   store,
+  store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount("#app")
