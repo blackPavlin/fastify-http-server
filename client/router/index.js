@@ -12,14 +12,41 @@ const routes = [
         path: "/",
         name: "Home",
         component: Home,
+        meta: {
+            title: "Home",
+            metaTags: [
+                {
+                    name: "description",
+                    content: ""
+                }
+            ]
+        },
     }, {
         path: "/login",
         name: "Login",
         component: Login,
+        meta: {
+            title: "Login",
+            metaTags: [
+                {
+                    name: "description",
+                    content: ""
+                }
+            ]
+        },
     }, {
         path: "/registration",
         name: "Registration",
         component: Registration,
+        meta: {
+            title: "Registration",
+            metaTags: [
+                {
+                    name: "description",
+                    content: ""
+                }
+            ]
+        },
     },
 ]
 

@@ -43,6 +43,11 @@ export default {
             menuShow: false,
         }
     },
+    watch: {
+        "$route" (to, from) { 
+            document.title = to.meta.title
+        },
+    },
     methods: {},
 }
 </script>
