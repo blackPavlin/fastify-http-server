@@ -41,18 +41,6 @@
                                 </button>
 
                                 <div class="buttons-list buttons-list--info">
-                                    <p class="typo__p" v-if="submitStatus === 'OK'">
-                                        Thanks for your submission!
-                                    </p>
-                                    <p class="typo__p" v-if="submitStatus === 'ERROR'">
-                                        Please fill the form correctly
-                                    </p>
-                                    <p class="typo__p" v-if="submitStatus === 'PENDING'">
-                                        Sending...
-                                    </p>
-                                </div>
-
-                                <div class="buttons-list buttons-list--info">
                                     <span>Do you need account?</span>
                                     <router-link to="/registration">  Enter Here</router-link>
                                 </div>
@@ -66,14 +54,13 @@
 </template>
 
 <script>
-import { required } from "../../node_modules/vuelidate/lib/validators"
+import { required } from "vuelidate/lib/validators";
 
 export default {
     data () {
         return {
-            email: "",
-            password: "",
-            submitStatus: null,
+            email: "admin@admin.ru",
+            password: "123456",
         }
     },
     validations: {
@@ -85,17 +72,20 @@ export default {
         },
     },
     methods: {
-        onSubmit() {
-            this.$v.$touch()
-            if (this.$v.$invalid) {
-                this.submitStatus = "ERROR"
-            } else {
-                const userData = {
-                    email: this.email,
-                    password: this.password
-                }
+        async onSubmit() {
+            try {
+                this.$v.$touch();
+                if (this.$v.$invalid) return;
 
-                this.submitStatus = "OK"
+                const formData = {
+                    login: this.email,
+                    password: this.password,
+                };
+
+                await this.$store.dispatch("login", formData);
+                this.$router.push("/");
+            } catch(error) {
+                console.error(error);
             }
         },
     },

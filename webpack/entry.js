@@ -1,3 +1,3 @@
 module.exports = {
-    "index" : "./client/app.js",
+    "index" : "./client/main.js",
 }

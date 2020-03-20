@@ -1,19 +1,17 @@
-import path from "path"
-import fastify from "fastify"
-import fastifyCors from "fastify-cors"
-import fastifyFormBody from "fastify-formbody"
-import fastifyStatic from "fastify-static"
-import authMiddlewares from "./middlewares/auth.middlewares"
-import authRoutes from "./routes/auth.routes"
+import path from "path";
+import fastify from "fastify";
+import authRoutes from "./routes/auth.routes";
+import indexRoutes from "./routes/index.routes";
 
-const server = fastify({ logger: true, ignoreTrailingSlash: true })
+const server = fastify({ logger: true, ignoreTrailingSlash: true });
 
 // Middlewares
-server.register(fastifyCors, { origin: true, methods: ["GET", "POST"] })
-server.register(fastifyStatic, { root: path.join(__dirname, "../public") })
-server.register(fastifyFormBody)
+server.register(require('fastify-cors'), { origin: true, methods: ["GET", "POST"] });
+server.register(require('fastify-static'), { root: path.join(__dirname, "../public") });
+server.register(require('fastify-formbody'));
 
 // Routes
-server.register(authRoutes, { preValidation: [authMiddlewares] })
+server.register(authRoutes);
+server.register(indexRoutes);
 
-export default server
+export default server;

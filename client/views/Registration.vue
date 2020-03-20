@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { required, email, minLength, sameAs } from "../../node_modules/vuelidate/lib/validators"
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators"
 
 export default {
     data () {
@@ -109,17 +109,20 @@ export default {
         },
     },
     methods: {
-        onSubmit() {
-            this.$v.$touch()
-            if (this.$v.$invalid) {
-                this.submitStatus = "ERROR"
-            } else {
-                const userData = {
-                    email: this.email,
-                    password: this.password
-                }
+        async onSubmit() {
+            try {
+                this.$v.$touch();
+                if (this.$v.$invalid) return;
 
-                this.submitStatus = "OK"
+                const formData = {
+                    login: this.email,
+                    password: this.password,
+                };
+
+                await this.$store.dispatch("signup", formData);
+                this.$router.push("/");
+            } catch(error) {
+                console.log(error)
             }
         },
     },
