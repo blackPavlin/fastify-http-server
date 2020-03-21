@@ -45,6 +45,9 @@
                                     :class="{ error: $v.repeatPassword.$error }"
                                     @change="$v.repeatPassword.$touch()"
                                 >
+                                <div class="error" v-if="!$v.repeatPassword.required">
+                                    Repeat password is required
+                                </div>
                                 <div class="error" v-if="!$v.repeatPassword.sameAsPassword">
                                     Passwords must be identical
                                 </div>
@@ -105,6 +108,7 @@ export default {
             minLength: minLength(6),
         },
         repeatPassword: {
+            required,
             sameAsPassword: sameAs("password"),
         },
     },
@@ -119,7 +123,7 @@ export default {
                     password: this.password,
                 };
 
-                await this.$store.dispatch("signup", formData);
+                await this.$store.dispatch("auth/signup", formData);
                 this.$router.push("/");
             } catch(error) {
                 console.log(error)
@@ -137,8 +141,15 @@ export default {
     .auth__banner, 
     .auth__form {
         width: 50%;
+    }
 
-        @media screen and (max-width: 768px) {
+    @media screen and (max-width: 480px) {
+        .auth {
+            flex-direction: column-reverse;
+        }
+
+        .auth__banner, 
+        .auth__form {
             width: 100%;
             margin-bottom: 30px;
 
@@ -163,9 +174,28 @@ export default {
         }
     }
     
+    .shake {
+        animation-name: shake;
+    }
+
+    @keyframes shake {
+        from, to {
+            transform: translate3d(0, 0, 0);
+        }
+
+        10%, 30%, 50%, 70%, 90% {
+            transform: translate3d(-4px, 0, 0);
+        }
+
+        20%, 40%, 60%, 80% {
+            transform: translate3d(4px, 0, 0);
+        }
+    }
+    
     input {
         &.error {
             border-color: #fc5c65;
+            animation: shake .3s;
         }
     }
 

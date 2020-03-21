@@ -1,25 +1,22 @@
-import Vue from "vue"
-import VueRouter from "vue-router"
+import Vue from "vue";
+import VueRouter from "vue-router";
+import store from "../store/store";
 
-import Home from "../views/Home.vue"
-import Login from "../views/Login.vue"
-import Registration from "../views/Registration.vue"
+import Main from "../views/Main.vue";
+import Login from "../views/Login.vue";
+import Registration from "../views/Registration.vue";
+import Home from "../views/Home.vue";
+import Logout from "../views/Logout.vue";
 
 Vue.use(VueRouter)
 
 const routes = [
     {
         path: "/",
-        name: "Home",
-        component: Home,
+        name: "Main",
+        component: Main,
         meta: {
-            title: "Home",
-            metaTags: [
-                {
-                    name: "description",
-                    content: ""
-                }
-            ]
+            title: "Main",
         },
     }, {
         path: "/login",
@@ -27,12 +24,6 @@ const routes = [
         component: Login,
         meta: {
             title: "Login",
-            metaTags: [
-                {
-                    name: "description",
-                    content: ""
-                }
-            ]
         },
     }, {
         path: "/registration",
@@ -40,20 +31,43 @@ const routes = [
         component: Registration,
         meta: {
             title: "Registration",
-            metaTags: [
-                {
-                    name: "description",
-                    content: ""
-                }
-            ]
+        },
+    }, {
+        path: "/home",
+        name: "Home",
+        component: Home,
+        meta: {
+            title: "Home",
+            requiresAuth: true,
+        },
+    }, {
+        path: "/logout",
+        name: "Logout",
+        component: Logout,
+        meta: {
+            title: "Logout",
+            requiresAuth: true,
         },
     },
 ]
 
 const router = new VueRouter({
-//   mode: "history",
-  base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (store.getters["auth/isAuth"]) {
+            next();
+        } else {
+            next({
+                path: "/login",
+                query: { message: "login" },
+            });
+        }
+    } else {
+        next()
+    }
 })
 
-export default router
+export default router;

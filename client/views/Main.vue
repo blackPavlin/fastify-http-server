@@ -2,7 +2,7 @@
     <div class="content-wrapper">
         <section>
             <div class="container">
-                <h1 class="ui-title-1">Home</h1>
+                <h1 class="ui-title-1">Main</h1>
             </div>
         </section>
     </div>

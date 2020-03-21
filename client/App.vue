@@ -16,13 +16,19 @@
                         <div class="navbar-list__wrapper" :class="{ active: menuShow }">
                             <ul class="navbar-list">
                                 <li class="navbar-item" @click="menuShow = false">
-                                    <router-link class="navbar-link" to="/">Home</router-link>
+                                    <router-link class="navbar-link" to="/">Main</router-link>
                                 </li>
-                                <li class="navbar-item" @click="menuShow = false">
+                                <li class="navbar-item" @click="menuShow = false" v-if="isAuth">
+                                    <router-link class="navbar-link" to="/home">Home</router-link>
+                                </li>
+                                <li class="navbar-item" @click="menuShow = false" v-if="!isAuth">
                                     <router-link class="navbar-link" to="/registration">Registration</router-link>
                                 </li>
-                                <li class="navbar-item" @click="menuShow = false">
+                                <li class="navbar-item" @click="menuShow = false" v-if="!isAuth">
                                     <router-link class="navbar-link" to="/login">Login</router-link>
+                                </li>
+                                <li class="navbar-item" @click="menuShow = false" v-if="isAuth">
+                                    <router-link class="navbar-link" to="/logout">Logout</router-link>
                                 </li>
                             </ul>
                         </div>
@@ -48,10 +54,15 @@ export default {
             document.title = to.meta.title
         },
     },
+    computed: {
+        isAuth() {
+            return this.$store.getters["auth/isAuth"]
+        }
+    },
     methods: {},
 }
 </script>
 
 <style lang="scss">
-    
+
 </style>

@@ -41,6 +41,18 @@
                                 </button>
 
                                 <div class="buttons-list buttons-list--info">
+                                    <p class="typo__p" v-if="submitStatus === 'OK'">
+                                        Thanks for your submission!
+                                    </p>
+                                    <p class="typo__p" v-if="submitStatus === 'ERROR'">
+                                        Please fill the form correctly
+                                    </p>
+                                    <p class="typo__p" v-if="submitStatus === 'PENDING'">
+                                        Sending...
+                                    </p>
+                                </div>
+
+                                <div class="buttons-list buttons-list--info">
                                     <span>Do you need account?</span>
                                     <router-link to="/registration">  Enter Here</router-link>
                                 </div>
@@ -61,6 +73,7 @@ export default {
         return {
             email: "admin@admin.ru",
             password: "123456",
+            submitStatus: null,
         }
     },
     validations: {
@@ -82,8 +95,8 @@ export default {
                     password: this.password,
                 };
 
-                await this.$store.dispatch("login", formData);
-                this.$router.push("/");
+                await this.$store.dispatch("auth/login", formData);
+                this.$router.push("/home");
             } catch(error) {
                 console.error(error);
             }
@@ -100,8 +113,15 @@ export default {
     .auth__banner, 
     .auth__form {
         width: 50%;
+    }
 
-        @media screen and (max-width: 768px) {
+    @media screen and (max-width: 480px) {
+        .auth {
+            flex-direction: column-reverse;
+        }
+
+        .auth__banner, 
+        .auth__form {
             width: 100%;
             margin-bottom: 30px;
 
