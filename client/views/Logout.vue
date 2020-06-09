@@ -3,7 +3,7 @@
 <script>
 export default {
     mounted() {
-        this.$store.dispatch("auth/logout");
+        this.$store.dispatch("auth/logOut");
         this.$router.push("/login?message=logout");
     },
 }

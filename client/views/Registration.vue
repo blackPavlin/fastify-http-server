@@ -123,7 +123,7 @@ export default {
                     password: this.password,
                 };
 
-                await this.$store.dispatch("auth/signup", formData);
+                await this.$store.dispatch("auth/signUp", formData);
                 this.$router.push("/");
             } catch(error) {
                 console.log(error)

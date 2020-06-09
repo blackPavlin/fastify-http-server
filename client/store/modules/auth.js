@@ -1,9 +1,9 @@
-import $http from '../../plugins/axios';
+import client from '../../plugins/axios';
 
 export default {
   namespaced: true,
   state: {
-    token: '',
+    token: localStorage.getItem('token') || '',
   },
   mutations: {
     setToken(state, token) {
@@ -14,25 +14,17 @@ export default {
     },
   },
   actions: {
-    async login({ commit, dispatch }, formData) {
-      try {
-        const { data: { token }} = await $http.post('/login', formData);
-        commit('setToken', token);
-      } catch(error) {
-        console.error(error);
-        throw error
-      }
+    async logIn({ commit, dispatch }, formData) {
+      const { data: { token }} = await client.post('/login', formData);
+      localStorage.setItem('token', token);
+      commit('setToken', token);
     },
-    async signup({ commit, dispatch }, formData) {
-      try {
-        await $http.post('/signup', formData);
-        dispatch('login', formData);
-      } catch(error) {
-        console.error(error);
-        throw error
-      }
+    async signUp({ commit, dispatch }, formData) {
+      await client.post('/signup', formData);
+      dispatch('logIn', formData);
     },
-    logout({ commit }) {
+    logOut({ commit }) {
+      localStorage.removeItem('token');
       commit('clearToken');
     },
   },

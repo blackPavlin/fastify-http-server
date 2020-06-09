@@ -95,7 +95,7 @@ export default {
                     password: this.password,
                 };
 
-                await this.$store.dispatch("auth/login", formData);
+                await this.$store.dispatch("auth/logIn", formData);
                 this.$router.push("/home");
             } catch(error) {
                 console.error(error);

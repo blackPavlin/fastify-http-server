@@ -61,7 +61,7 @@ module.exports = {
                 }
             ]
         }, {
-            test: /\.(png|jpg|gif|svg)$/,
+            test: /\.(png|jpg|gif|svg|ico)$/,
             loader: "file-loader",
             options: {
                 limit: 2048,
@@ -90,7 +90,7 @@ module.exports = {
         new CopyWebpackPlugin([
             { from: `${PATHS.src}/assets/images`, to: `${PATHS.build}/assets/images` },
             { from: `${PATHS.src}/assets/fonts`, to: `${PATHS.build}/assets/fonts` },
-            { from: `${PATHS.src}/static`, to: ""},
+            // { from: `${PATHS.src}/static`, to: ""},
         ]),
         new HtmlWebpackPlugin({
             filename: "index.html",

@@ -3,7 +3,7 @@ import { model, Schema, Document } from 'mongoose';
 export interface User extends Document {
     login: string;
     password: string;
-};
+}
 
 const userSchema: Schema = new Schema({
     login: {

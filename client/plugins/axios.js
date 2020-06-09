@@ -1,5 +1,4 @@
 import axios from 'axios';
-import store from '../store/store';
 
 const client = axios.create({
     baseURL: 'http://localhost:3000',
@@ -7,12 +6,23 @@ const client = axios.create({
 });
 
 client.interceptors.request.use(request => {
-    if (store.getters['auth/isAuth'] && !request.headers.common.Authorization) {
-        const token = store.getters['auth/getToken'];
-        request.headers.common.Authorization = `Bearer ${token}`
+    if (!!localStorage.getItem('token') && !request.headers.common.Authorization) {
+        const token = localStorage.getItem('token');
+        request.headers.Authorization = `Bearer ${token}`;
     }
 
-    return request
+    return request;
+});
+
+client.interceptors.response.use(async response => response, error => {
+    if (error.response.status === 401) {
+        throw Error('Unauthorized');
+        // TODO: Добавить обрабтку ошибки
+    }
+
+    if (error.response.status === 500) {
+        // TODO: Добавить обрабтку ошибки
+    }
 });
 
 export default client;
