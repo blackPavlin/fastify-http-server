@@ -2,40 +2,34 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store/store";
 
-import Main from "../views/Main.vue";
-import Login from "../views/Login.vue";
-import Registration from "../views/Registration.vue";
-import Home from "../views/Home.vue";
-import Logout from "../views/Logout.vue";
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
     {
         path: "/",
         name: "Main",
-        component: Main,
+        component: () => import("../views/Main.vue"),
         meta: {
             title: "Main",
         },
     }, {
         path: "/login",
         name: "Login",
-        component: Login,
+        component: () => import("../views/Login.vue"),
         meta: {
             title: "Login",
         },
     }, {
         path: "/registration",
         name: "Registration",
-        component: Registration,
+        component: () => import("../views/Registration.vue"),
         meta: {
             title: "Registration",
         },
     }, {
         path: "/home",
         name: "Home",
-        component: Home,
+        component: () => import("../views/Home.vue"),
         meta: {
             title: "Home",
             requiresAuth: true,
@@ -43,13 +37,13 @@ const routes = [
     }, {
         path: "/logout",
         name: "Logout",
-        component: Logout,
+        component: () => import("../views/Logout.vue"),
         meta: {
             title: "Logout",
             requiresAuth: true,
         },
     },
-]
+];
 
 const router = new VueRouter({
   routes,
@@ -66,8 +60,8 @@ router.beforeEach((to, from, next) => {
             });
         }
     } else {
-        next()
+        next();
     }
-})
+});
 
 export default router;
