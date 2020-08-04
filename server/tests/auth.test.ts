@@ -6,8 +6,10 @@ const testPassword = 'admin';
 
 describe('Тест авторизации', () => {
     beforeAll(async () => {
-        await mongoose.connect(<string>process.env.MONGO_URL, { useUnifiedTopology: true, 
-            useNewUrlParser: true, useCreateIndex: true
+        await mongoose.connect(<string>process.env.MONGO_URL, {
+            useUnifiedTopology: true, 
+            useNewUrlParser: true,
+            useCreateIndex: true,
         });
     });
 

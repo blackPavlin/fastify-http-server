@@ -1,7 +1,7 @@
 {
     "env": {
         "node": true,
-        "es2020": true,
+        "es2019": true,
         "jest": true
     },
     "extends": [
@@ -17,7 +17,7 @@
     },
     "plugins": ["@typescript-eslint"],
 	"rules": {
-        "quotes": [2, "single"],
+        "quotes": ["error", "single"],
         "@typescript-eslint/consistent-type-assertions": "off",
         "@typescript-eslint/no-var-requires": "off"
     }

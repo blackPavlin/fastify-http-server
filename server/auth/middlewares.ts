@@ -1,12 +1,17 @@
-import { ServerResponse } from 'http';
-import { FastifyRequest, FastifyReply, FastifyError } from 'fastify';
 import jwt from 'jsonwebtoken';
-import { TokenData } from '../controllers/auth.controllers';
+import { FastifyRequest, FastifyReply, HookHandlerDoneFunction } from 'fastify';
+import { TokenData } from './services';
+
+declare module 'fastify' {
+    interface FastifyRequest {
+        auth: TokenData;
+    }
+}
 
 export default (
     request: FastifyRequest, 
-    reply: FastifyReply<ServerResponse>,
-    next: (error?: FastifyError | undefined) => void,
+    reply: FastifyReply,
+    next: HookHandlerDoneFunction,
 ): void => {
     const { authorization } = request.headers;
     if (!authorization) {
@@ -28,9 +33,7 @@ export default (
 
     jwt.verify(<string>token, <string>process.env.SECRET_KEY, (error, decodet) => {
         if (!error) {
-            request.body.login = (<TokenData>decodet).login;
-            request.body.userID = (<TokenData>decodet).userID;
-
+            request.auth.login = (<TokenData>decodet).login;
             next();
         } else {
             reply.status(401).send({ 
@@ -38,4 +41,4 @@ export default (
             });
         }
     });
-};
+}

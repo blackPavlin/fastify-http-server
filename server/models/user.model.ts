@@ -5,7 +5,7 @@ export interface User extends Document {
     password: string;
 }
 
-const userSchema: Schema = new Schema({
+const userSchema = new Schema({
     login: {
         type: String,
         unique: true,

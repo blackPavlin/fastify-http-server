@@ -1,18 +1,16 @@
 import path from 'path';
 import fastify from 'fastify';
-import authRoutes from './routes/auth.routes';
-import indexRoutes from './routes/index.routes';
+import authControllers from './auth/controllers';
 
 const server = fastify({ logger: true, ignoreTrailingSlash: true });
 
 // Middlewares
 server.register(require('fastify-cors'), { origin: true, methods: ['GET', 'POST'] });
 server.register(require('fastify-static'), { root: path.join(__dirname, '../public') });
-server.register(require('fastify-multipart'))
+server.register(require('fastify-multipart'));
 server.register(require('fastify-formbody'));
 
-// Routes
-server.register(authRoutes);
-server.register(indexRoutes);
+// Controllers
+server.register(authControllers);
 
 export default server;
