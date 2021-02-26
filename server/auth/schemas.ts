@@ -1,4 +1,6 @@
-export const loginSchema = {
+import { FastifySchema } from 'fastify';
+
+export const loginSchema: FastifySchema = {
     body: {
         required: ['login', 'password'],
         properties: {
@@ -36,7 +38,7 @@ export const loginSchema = {
     },
 };
 
-export const signupSchema = {
+export const signupSchema: FastifySchema = {
     body: {
         required: ['login', 'password'],
         properties: {
