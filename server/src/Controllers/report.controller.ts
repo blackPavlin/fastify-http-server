@@ -14,7 +14,8 @@ export default (
 		'/:id',
 		{ schema: GetReportSchema },
 		async (request, reply) => {
-			const reports = await Report.find({ periodID: '' }).sort({ week: 1 }).lean();
+			const periodID = request.params.id;
+			const reports = await Report.find({ periodID }).sort({ week: 1 }).lean();
 
 			reply.code(200).send({ reports });
 		},
