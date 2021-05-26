@@ -9,7 +9,7 @@ export type PeriodGetterT = {
 };
 
 export enum PeriodGetterE {
-    getPeriods = "GET_PERIODS",
+  getPeriods = "GET_PERIODS",
 }
 
 const getters: GetterTree<PeriodState, RootState> & PeriodGetterT = {

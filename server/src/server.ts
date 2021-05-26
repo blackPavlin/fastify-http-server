@@ -4,6 +4,7 @@ import fastifyCors from 'fastify-cors';
 import fastifySensible from 'fastify-sensible';
 import fastifyAuth from 'fastify-auth';
 import fastifyEnv from 'fastify-env';
+// import fastifyRedis from 'fastify-redis';
 
 import configSchema from './Config';
 import authPlugin from './Plugins/auth.plugin';

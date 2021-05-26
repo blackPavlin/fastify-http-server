@@ -22,6 +22,6 @@ const userSchema = new Schema(
 	},
 );
 
-userSchema.index('login');
+userSchema.index({ login: 1 });
 
 export default model<User>('users', userSchema);

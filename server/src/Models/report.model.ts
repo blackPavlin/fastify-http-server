@@ -31,4 +31,6 @@ const reportSchema = new Schema(
 	},
 );
 
+reportSchema.index({ periodID: 1 });
+
 export default model<Report>('reports', reportSchema);

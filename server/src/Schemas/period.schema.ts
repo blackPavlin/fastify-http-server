@@ -13,7 +13,6 @@ export const GetPeriodSchema = {
 							_id: { type: 'string' },
 							title: { type: 'string' },
 							dateStart: { type: 'string' },
-							dateEnd: { type: 'string' },
 						},
 					},
 				},
@@ -25,11 +24,10 @@ export const GetPeriodSchema = {
 export const CreatePeriodSchema = {
 	body: {
 		type: 'object',
-		required: ['title', 'dateStart', 'dateEnd'],
+		required: ['title', 'dateStart'],
 		properties: {
 			title: { type: 'string' },
 			dateStart: { type: 'string' },
-			dateEnd: { type: 'string' },
 		},
 	},
 	response: {

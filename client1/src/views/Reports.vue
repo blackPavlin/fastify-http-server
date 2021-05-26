@@ -11,7 +11,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import ReportItem from "@/components/ReportItem.vue";
 
 export default defineComponent({
@@ -19,10 +20,18 @@ export default defineComponent({
   components: {
     ReportItem,
   },
-  mounted() {
-    const periodID = Array.isArray(this.$route.params.id)
-      ? this.$route.params.id[0]
-      : this.$route.params.id;
+  setup() {
+    const route = useRoute();
+
+    onMounted(() => {
+      const periodID = Array.isArray(route.params.id)
+        ? route.params.id[0]
+        : route.params.id;
+
+      console.log(periodID);
+    });
+
+    return {};
   },
 });
 </script>
@@ -32,6 +41,7 @@ export default defineComponent({
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
 
   & .ui-title-2 {
     margin-bottom: 0px;

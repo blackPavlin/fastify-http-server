@@ -10,10 +10,10 @@
           reprehenderit temporibus illo.</span
         >
         <div class="row grid-start">
-            <div class="col-xs-4">Profit</div>
-            <div class="col-xs-4 grid-end">
-                <span class="ui-label ui-label--danger">Fix</span>
-            </div>
+          <div class="col-xs-4">Profit</div>
+          <div class="col-xs-4 grid-end">
+            <span class="ui-label ui-label--danger">Fix</span>
+          </div>
         </div>
       </div>
     </div>

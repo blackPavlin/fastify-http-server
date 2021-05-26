@@ -16,10 +16,6 @@ const periodSchema = new Schema(
 			type: Date,
 			required: true,
 		},
-		dateEnd: {
-			type: Date,
-			required: true,
-		},
 	},
 	{
 		versionKey: false,

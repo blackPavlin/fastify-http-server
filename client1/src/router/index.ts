@@ -35,7 +35,7 @@ const routes: RouteRecordRaw[] = [
     path: "/admin/reports/:id",
     name: "AdminReports",
     component: () => import("../views/Admin/Reports.vue"),
-  }
+  },
 ];
 
 const router = createRouter({

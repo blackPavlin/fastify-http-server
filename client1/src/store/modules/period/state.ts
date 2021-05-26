@@ -1,16 +1,16 @@
 export type Period = {
-    _id: string;
-    title: string;
-    dateStart: string;
-    dateEnd: string;
+  _id: string;
+  title: string;
+  dateStart: string;
+  dateEnd: string;
 };
 
 export type PeriodState = {
-    periods: Period[];
+  periods: Period[];
 };
 
 const state: PeriodState = {
-    periods: [],
+  periods: [],
 };
 
 export default state;

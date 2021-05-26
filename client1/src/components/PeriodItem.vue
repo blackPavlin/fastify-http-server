@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import { useStore } from "@/store";
 import { PeriodGetterE } from "@/store/modules/period/getters";
 
@@ -33,20 +33,35 @@ const store = useStore();
 
 export default defineComponent({
   name: "PeriodItem",
-  computed: {
-    periods() {
-      return store.getters[PeriodGetterE.getPeriods];
+  props: {
+    filter: {
+      type: String,
+      required: true,
     },
   },
-  methods: {
-    getDate(date: string): string {
+  setup(props) {
+    const getDate = (date: string): string => {
       const d = new Date(date);
       const monthName = d.toLocaleDateString("ru-RU", { month: "short" });
       const nameCapitalized =
         monthName.charAt(0).toUpperCase() + monthName.slice(1);
 
       return `${nameCapitalized} ${d.getFullYear()}`;
-    },
+    };
+
+    const periods = computed(() => {
+      switch (props.filter) {
+        case "ascending":
+          return store.getters[PeriodGetterE.getPeriods].reverse();
+        default:
+          return store.getters[PeriodGetterE.getPeriods];
+      }
+    });
+
+    return {
+      getDate,
+      periods,
+    };
   },
 });
 </script>
