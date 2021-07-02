@@ -1,41 +1,64 @@
 {
-  "name": "client",
+  "name": "fastify-http-server",
   "version": "0.1.0",
-  "private": true,
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "webpack-dev-server --open --config ./webpack/webpack.dev.conf.js",
+    "build": "webpack --config ./webpack/webpack.build.conf.js",
+    "server": "env-cmd -f ./env/.env.development nodemon ./server/app.ts",
+    "test": "env-cmd -f ./env/.env.development jest",
+    "lint": "eslint --ext .ts server"
   },
+  "browserslist": [
+    "> 1%",
+    "last 3 version"
+  ],
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blackPavlin/fastify-http-server.git"
+  },
+  "author": {
+    "name": "Boikiv Bogdan",
+    "email": "boikiv.bogdan@gmail.com"
+  },
+  "license": "UNLICENSE",
   "dependencies": {
-    "@vuelidate/core": "^2.0.0-alpha.18",
-    "@vuelidate/validators": "^2.0.0-alpha.15",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/runtime": "^7.7.7",
     "axios": "^0.21.1",
-    "core-js": "^3.6.5",
     "uimini": "^1.1.3",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vue": "^2.6.11",
+    "vue-router": "^3.3.2",
+    "vuelidate": "^0.7.4",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0",
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-typescript": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "@vue/eslint-config-typescript": "^7.0.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-vue": "^7.0.0",
-    "prettier": "^2.2.1",
-    "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
-    "typescript": "~4.1.5"
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
+    "autoprefixer": "^9.7.3",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.4.0",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^4.1.10",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.0",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^0.23.1",
+    "vue-loader": "^15.9.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
   }
 }

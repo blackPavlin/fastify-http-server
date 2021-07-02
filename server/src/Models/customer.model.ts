@@ -1,10 +1,10 @@
 import { model, Schema, Document } from 'mongoose';
 
-export interface Period extends Document {
+export interface Customer extends Document {
 	date: Date;
 }
 
-const periodSchema = new Schema(
+const customerSchema = new Schema(
 	{
 		date: {
 			type: Date,
@@ -16,4 +16,4 @@ const periodSchema = new Schema(
 	},
 );
 
-export default model<Period>('periods', periodSchema);
+export default model<Customer>('customers', customerSchema);

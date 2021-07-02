@@ -8,11 +8,10 @@ export const GetPeriodSchema = {
 					type: 'array',
 					items: {
 						type: 'object',
-						required: ['_id', 'title', 'dateStart', 'dateEnd'],
+						required: ['_id', 'date'],
 						properties: {
 							_id: { type: 'string' },
-							title: { type: 'string' },
-							dateStart: { type: 'string' },
+							date: { type: 'string' },
 						},
 					},
 				},
@@ -24,18 +23,24 @@ export const GetPeriodSchema = {
 export const CreatePeriodSchema = {
 	body: {
 		type: 'object',
-		required: ['title', 'dateStart'],
+		required: ['date'],
 		properties: {
-			title: { type: 'string' },
-			dateStart: { type: 'string' },
+			date: { type: 'string' },
 		},
 	},
 	response: {
 		201: {
 			type: 'object',
-			required: ['message'],
+			required: ['new_period'],
 			properties: {
-				message: { type: 'string' },
+				new_period: {
+					type: 'object',
+					required: ['_id', 'date'],
+					properties: {
+						_id: { type: 'string' },
+						date: { type: 'string' },
+					},
+				},
 			},
 		},
 	},
@@ -50,7 +55,7 @@ export const DeletePeriodSchema = {
 		},
 	},
 	response: {
-		201: {
+		200: {
 			type: 'object',
 			required: ['message'],
 			properties: {

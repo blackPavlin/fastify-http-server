@@ -1,4 +1,4 @@
-import { model, Schema, Document } from 'mongoose';
+import { model, Schema, Document, Types } from 'mongoose';
 
 export interface Report extends Document {
 	periodID: string;
@@ -10,7 +10,7 @@ export interface Report extends Document {
 const reportSchema = new Schema(
 	{
 		periodID: {
-			type: String,
+			type: Types.ObjectId,
 			required: true,
 		},
 		week: {

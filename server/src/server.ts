@@ -18,7 +18,7 @@ const server = fastify({
 });
 
 server
-	.register(fastifyCors, { origin: true, methods: ['GET', 'POST'] })
+	.register(fastifyCors, { origin: true, methods: ['GET', 'POST', 'DELETE'] })
 	.register(fastifySensible)
 	.register(fastifyAuth)
 	.register(fastifyEnv, {

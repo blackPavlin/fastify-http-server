@@ -11,7 +11,7 @@ export default (
 ): void => {
 	// Получить список периодов
 	server.get('/', { schema: GetPeriodSchema }, async (request, reply) => {
-		const periods = await Period.find({}).sort({ dateStart: -1 }).lean();
+		const periods = await Period.find().sort({ date: -1 }).lean();
 		reply.code(200).send({ periods });
 	});
 

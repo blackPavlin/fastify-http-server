@@ -5,12 +5,12 @@
   "main": "dist/app.js",
   "scripts": {
     "start": "node ./dist/app.js",
-    "start:dev": "./node_modules/.bin/ts-node ./src/app.ts",
-    "start:watch": "./node_modules/.bin/nodemon ./src/app.ts",
-    "build": "./node_modules/.bin/tsc",
-    "test": "./node_modules/.bin/jest --colors",
-    "lint": "./node_modules/.bin/tsc --noEmit && ./node_modules/.bin/eslint ./src/**/*.ts",
-    "lint:fix": "./node_modules/.bin/eslint ./src/**/*.ts --fix"
+    "start:dev": "ts-node ./src/app.ts",
+    "start:watch": "nodemon ./src/app.ts",
+    "build": "tsc",
+    "test": "jest --colors",
+    "lint": "tsc --noEmit && eslint ./src/**/*.ts",
+    "lint:fix": "eslint ./src/**/*.ts --fix"
   },
   "nodemonConfig": {
     "delay": "5000"
@@ -36,7 +36,8 @@
     "fastify-sensible": "^3.1.1",
     "json-schema-to-ts": "^1.6.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.10"
+    "mongoose": "^5.12.10",
+    "telegraf": "^4.4.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
